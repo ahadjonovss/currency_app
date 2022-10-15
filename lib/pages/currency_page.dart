@@ -29,8 +29,6 @@ class _CurrencyPageState extends State<CurrencyPage> {
     }
     return List.empty();
 
-
-
   }
 
 
@@ -50,7 +48,7 @@ class _CurrencyPageState extends State<CurrencyPage> {
         future: getData(),
         builder: ((context, snapshot) {
           if(snapshot.connectionState==ConnectionState.waiting){
-            Container(
+            return Container(
               color: Colors.white,
               child: Center(
                 child: Lottie.asset('assets/animations/waiting.json'),
@@ -58,7 +56,54 @@ class _CurrencyPageState extends State<CurrencyPage> {
               ),
             );
           }
-          return Container();
+          if(snapshot.hasData){
+            return Container(
+              color: Colors.white.withOpacity(0.9),
+              padding: EdgeInsets.all(28),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    height: 130,
+                    width: 400,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                          blurRadius: 3
+                        )
+                      ]
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Row(
+                              children: [
+
+                              ],
+                            )
+                          ],
+                        )
+                        
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              );
+          }
+          if(snapshot.hasError){
+            return Container(
+              child: Text(snapshot.error.toString()),
+            );
+          }
+
+          return Container(
+            color: Colors.yellow,
+          );
         })
       ),
 

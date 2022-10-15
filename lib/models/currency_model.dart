@@ -16,7 +16,7 @@ class Currency{
 
   Currency({required this.title,required this.code,required this.cb_price, required this.nbu_buy_price,required this.nbu_cell_price});
 
-  factory Currency.fromJson(Map <String,String> json){
+  factory Currency.fromJson(Map <String,dynamic> json){
     String title = json['title'] as String;
     String code = json['code'] as String;
     String cb_price = json['cb_price'] as String;
