@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:currency/widgets/currency_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 
@@ -59,40 +60,11 @@ class _CurrencyPageState extends State<CurrencyPage> {
           if(snapshot.hasData){
             return Container(
               color: Colors.white.withOpacity(0.9),
-              padding: EdgeInsets.all(28),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    height: 130,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                          blurRadius: 3
-                        )
-                      ]
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Row(
-                              children: [
-
-                              ],
-                            )
-                          ],
-                        )
-                        
-                      ],
-                    ),
-                  )
-                ],
-              ),
+              width: 400,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) => currency_box(snapshot.data![index]),)
               );
           }
           if(snapshot.hasError){
